@@ -13,13 +13,15 @@ import React, { Component } from 'react'
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      show: false
-    };
+    this.state = {show: false, showw: false};
   }
 
   toggle = () => {
     this.setState({show: !this.state.show})
+  }
+  
+  hide = () => {
+    this.setState({showw: !this.state.showw})
   }
 
 
@@ -27,16 +29,16 @@ export default class App extends Component {
     return (
       
       <div className="App">
-        <div>
+         
         <NavBar/>  
-
-        <Button style={{marginTop : "35px"}} variant="outline-primary" onClick={this.toggle}>Show Profile</Button>
-        {this.state.show ? <Person/> : null}
+        <div>
+        <Button style={{marginTop : "35px"}} variant="outline-primary" onClick={this.toggle}>{this.state.show? 'Hide Profile':'Show Profile'}</Button>
+        {this.state.show && <Person/> }
         </div>
         <br/>
         <div>
-        <Button variant="outline-secondary" onClick={this.toggle}>count</Button>
-        {this.state.show ? <Counter /> : null} 
+        <Button variant="outline-secondary" onClick={this.hide}>Show | Hide</Button>
+        {this.state.showw ? <Counter /> : <h4>Click on the button to show the counter</h4>} 
         </div>   
         <Footer/>
       </div>
